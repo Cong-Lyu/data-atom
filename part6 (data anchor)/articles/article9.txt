@@ -1,0 +1,13 @@
+28,GENHX,"He is a 24-year-old male who said that he had gotten into some poison ivy this weekend while he was fishing.  He has had several cases of this in the past and he says that is usually takes quite awhile for him to get over it; he said that the last time he was here he got a steroid injection by Dr. Blackman; it looked like it was Depo-Medrol 80 mg.  He said that it worked fairly well, although it seemed to still take awhile to get rid of it.  He has been using over-the-counter Benadryl as well as cortisone cream on the areas of the rash and having a little bit of improvement, but this last weekend he must have gotten into some more poison ivy because he has got another outbreak along his chest, legs, arms and back.","Doctor: Hello sir. Let me first start by asking your age. How old are you?
+Patient: I'm twenty four.
+Doctor: So, what brought you here? How can I help you?
+Patient: I was out for fishing this weekend, I think I got into some poison ivy and I have these rashes all over my chest, legs, arms and also some are on my back.
+Doctor: You seem so confident of it being poison ivy has it happened before?
+Patient: Oh yes, it has happened several times before. It usually takes some time to get over. Last time I was here Doctor Blackman gave me a steroid injection.
+Doctor: Okay, let me check my records. It looks like he gave you eighty milligrams of depomedrol. How was it last time after the injection?
+Patient: It worked fine. It did take us some time to get rid of it.
+Doctor: Did you take any medicine or anything else this time?
+Patient: I took over the counter Benadryl. Also, I'm applying cortisone cream on the rashes.
+Doctor: Did they help you?
+Patient: I saw a little bit of improvement. But this weekend it seemed to have been worst.
+Doctor: No worries, let's set you up for another injection."

@@ -1,0 +1,2 @@
+24,ASSESSMENT,"1.  Hypoglycemia due to not eating her meals on a regular basis. 2.  Hypertension. 3.  Renal insufficiency, may be dehydration, or diabetic nephropathy.","Guest_clinician: What brought them in today?
+Doctor: Poor renal sufficiency, possibly due to dehydration or diabetic nephropathy. She also has high blood pressure and low blood sugar as a result of missing meals regularly."

@@ -1,0 +1,1 @@
+body temperature test result: 39.2, blood test: white blood cell count: xxxx, C-Reactive Protein: xxxx, Lymphocytes: xxx, COVID-19 test result: Positive

@@ -1,0 +1,2 @@
+19,MEDICATIONS,None.,"Doctor: Is he currently taking any medication?
+Guest_family: No."

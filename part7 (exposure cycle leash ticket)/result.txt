@@ -1,0 +1,219 @@
+Step 1: Topic Discovery
+Topic ID	Topic Name
+0	General Medical Follow-up / Chronic Conditions
+1	Neurological Symptoms
+2	Skin / Anorectal Conditions
+3	Medication Usage
+4	Musculoskeletal Injury / Orthopedic Problems
+5	Past Medical & Surgical History
+6	Family Medical History
+7	Acute Gastrointestinal Symptoms
+Step 2: Dialogue Classification
+Dialogue ID	Topic
+0	0
+1	1
+2	2
+3	3
+4	4
+5	5
+6	5
+7	5
+8	6
+9	6
+10	4
+11	0
+12	3
+13	5
+14	1
+15	5
+16	4
+17	7
+18	0
+19	3
+Step 3: Topic Keywords
+Topic 0 — General Medical Follow-up / Chronic Conditions
+
+Members:
+
+0
+11
+18
+
+Keywords:
+
+hypertension
+followup
+blood-pressure
+osteoarthritis
+osteoporosis
+hypothyroidism
+kidney-stones
+Mavik
+verapamil
+Tarka
+Lexapro
+tremor
+dentures
+mouth-sores
+food-diary
+exercise
+walking
+mall
+Topic 1 — Neurological Symptoms
+
+Members:
+
+1
+14
+
+Keywords:
+
+headache
+migraine
+blurry-vision
+scotoma
+lightheadedness
+numbness
+hemibody
+clumsy
+stiffness
+ataxia
+multiple-sclerosis
+weakness
+neurological
+morphine
+CT
+Topic 2 — Skin / Anorectal Conditions
+
+Members:
+
+2
+
+Keywords:
+
+condyloma
+warts
+anal
+itching
+lesions
+anorectal
+discomfort
+Topic 3 — Medication Usage
+
+Members:
+
+3
+12
+19
+
+Keywords:
+
+medications
+prescription
+Salmeterol
+Fluticasone
+inhaler
+nasal
+treatment
+drug-use
+none
+Topic 4 — Musculoskeletal Injury / Orthopedic Problems
+
+Members:
+
+4
+10
+16
+
+Keywords:
+
+burn
+arm
+bunion
+deformity
+foot
+surgery
+Charcot-Marie-Tooth
+shoulder-pain
+lifting
+cardboard
+twisting
+popping
+rotator-cuff
+injury
+orthopedic
+Topic 5 — Past Medical & Surgical History
+
+Members:
+
+5
+6
+7
+13
+15
+
+Keywords:
+
+asthma
+inhaler
+allergies
+peptic-ulcer
+stroke
+memory-loss
+pacemaker
+hysterectomy
+appendectomy
+cesarean
+smoking
+pregnancy
+medical-history
+surgery
+Topic 6 — Family Medical History
+
+Members:
+
+8
+9
+
+Keywords:
+
+family-history
+heart-disease
+prostate-cancer
+brain-cancer
+diabetes
+brother
+father
+mother
+polio
+uncles
+neurological
+inheritance
+Topic 7 — Acute Gastrointestinal Symptoms
+
+Members:
+
+17
+
+Keywords:
+
+nausea
+vomiting
+episodes
+stomach
+gastrointestinal
+Zofran
+acute
+Compact Output (Useful for NLP)
+{
+  "0": [0,11,18],
+  "1": [1,14],
+  "2": [2],
+  "3": [3,12,19],
+  "4": [4,10,16],
+  "5": [5,6,7,13,15],
+  "6": [8,9],
+  "7": [17]
+}
+
+One note: if your goal is topic modeling similar to LDA/NMF BERTopic, I would probably merge Topics 2, 4, and 7 into a broader "Presenting Complaint / Current Symptoms" category, resulting in about 5–6 topics overall. If your goal is manual semantic clustering for annotation, the 8-topic solution above is more precise.

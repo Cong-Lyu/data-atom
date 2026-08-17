@@ -1,0 +1,7 @@
+31,FAM/SOCHX,"The patient is originally from Maine.  She has lived in Arizona for 4 years.  She has had 2 children; however, only one is living.  She had one child died from complications of ulcerative colitis.  She has been predominantly a homemaker during her life, but has done some domestic cleaning work in the past.","Doctor: I understand that you are new to the clinic. Welcome.
+Patient: Yes, I am new here. I have lived in Arizona for the last four years. I am from Maine. That is where I grow up and most of my family still lives there.
+Doctor: What line of work are you in?
+Patient: I am a homemaker. I used to clean house, a while back.
+Doctor: Do you have children?
+Patient: I have two children but only one of them is still with us. My oldest son passed away from ulcerative colitis complications three years ago.
+Doctor: I am so sorry to hear that!"

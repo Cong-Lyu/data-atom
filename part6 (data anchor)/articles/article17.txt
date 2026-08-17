@@ -1,0 +1,21 @@
+36,GENHX,"The patient is an 88-year-old gentleman followed by Dr. X, his primary care physician, Dr. Y for the indication of CLL and Dr. Z for his cardiovascular issues.  He presents to the Care Center earlier today with approximately a one-week history of increased progressive shortness of breath, orthopnea over the course of the past few nights, mild increase in peripheral edema, and active wheezing with dyspnea presenting this morning. He reports no clear-cut chest discomfort or difficulty with angina.  He has had no dizziness, lightheadedness, no near or true syncope, nothing supportive of CVA, TIA, nor peripheral vascular claudication.","Doctor: Hi there, how are you?
+Patient: I am okay.
+Doctor: So, I see you turned eighty-eight yesterday, happy birthday!
+Patient: Thank you!
+Doctor: And you are referred by Doctor X, he is your primary physician, right?
+Patient: Correct! I am also seeing Doctor Y for my leukemia.
+Doctor: Hm he mentioned that it's chronic lymphocytic leukemia.
+Patient: Yes.
+Doctor: Okay.
+Doctor: And you are also seeing Doctor Z for your heart related problems.
+Patient: That is correct.
+Doctor: So, tell me what is happening with you?
+Patient: For the past one week I am having this increased shortness of breath and having difficulty breathing from past few nights while sleeping.
+Doctor: Okay.
+Patient: And this morning I was having difficulty catching my breath. I am also having wheezing since morning.
+Doctor: Let me examine you, can you come forward and sit-up here? Any chest discomfort or acute chest pain or anything of that sort? Any pain of the left arm?
+Patient: No.
+Doctor: Any dizziness, feeling like fainting or light headedness or losing control?
+Patient: No.
+Doctor: Well, I don't think there is any sign of cardiovascular accident or heart attack, so that's that. You do have mild peripheral edema. We need to treat that.
+Patient: Okay."

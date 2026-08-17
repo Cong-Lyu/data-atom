@@ -1,0 +1,2 @@
+7,ALLERGY,No known drug allergies.,"Doctor: Any know drug allergies?
+Patient: No."

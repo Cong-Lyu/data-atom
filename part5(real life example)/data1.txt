@@ -1,0 +1,1 @@
+Patient: Mark Age: 45 S.5 mymptom Description: getting a fever (39easured by patient himself) 2 days ago, frequently coughing and feeling tired, feeling unwell with the chest for more than a week. Diagnosis: Acute Bronchitis Suggested tests: body temperature test, chest X-Ray, blood test, COVID-19 test. Suggestion: No need to be inpatient, take more rest.
