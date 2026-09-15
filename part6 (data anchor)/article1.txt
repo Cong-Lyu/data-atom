@@ -1,4 +1,7 @@
-0,GENHX,"The patient is a 76-year-old white female who presents to the clinic today originally for hypertension and a med check.  She has a history of hypertension, osteoarthritis, osteoporosis, hypothyroidism, allergic rhinitis and kidney stones.  Since her last visit she has been followed by Dr. Kumar.  Those issues are stable.  She has had no fever or chills, cough, congestion, nausea, vomiting, chest pain, chest pressure.","Doctor: What brings you back into the clinic today, miss?
+0,GENHX,"The patient is a 76-year-old white female who presents to the clinic today originally for hypertension and a med check.
+She has a history of hypertension, osteoarthritis, osteoporosis, hypothyroidism, allergic rhinitis and kidney stones.
+Since her last visit she has been followed by Dr. Kumar.  Those issues are stable.  She has had no fever or chills, cough,
+congestion, nausea, vomiting, chest pain, chest pressure.","Doctor: What brings you back into the clinic today, miss?
 Patient: I came in for a refill of my blood pressure medicine.
 Doctor: It looks like Doctor Kumar followed up with you last time regarding your hypertension, osteoarthritis, osteoporosis, hypothyroidism, allergic rhinitis and kidney stones.  Have you noticed any changes or do you have any concerns regarding these issues?
 Patient: No.

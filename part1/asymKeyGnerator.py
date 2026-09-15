@@ -1,7 +1,5 @@
-
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization
-
 
 privateKey = rsa.generate_private_key(
         public_exponent=65537,

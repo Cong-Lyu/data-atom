@@ -14,89 +14,1629 @@ import copy
 
 from part1.main import ontologyPointers
 
+# DomainOntology = {
+#     'Asthma': {
+#         'Id': '11A',
+#         'Parent': [
+#             {
+#                 'Id': '21215431311A',
+#                 'Name': 'Disorder of respiratory system'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '21256751312A',
+#                 'Name': 'Asthma in pregnancy'
+#             },
+#             {
+#                 'Id': '29865431313A',
+#                 'Name': 'Childhood asthma'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431314A',
+#                 'Name': 'Shortness of breath'
+#             },
+#             {
+#                 'Id': '29865431315A',
+#                 'Name': 'Chest tightness'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431316A',
+#                 'Name': 'Methacholine challenge'
+#             },
+#             {
+#                 'Id': '29865431317A',
+#                 'Name': 'Imaging tests'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431318A',
+#                 'Name': 'Inhaled corticosteroids'
+#             },
+#             {
+#                 'Id': '29865431319A',
+#                 'Name': 'Leukotriene modifiers'
+#             }
+#         ]
+#     },
+#     'AnalWarts': {
+#         'Id': '2212112B',
+#         'Parent': [
+#             {
+#                 'Id': '212112410B',
+#                 'Name': 'Anal Infection'
+#             }
+#         ],
+#         'Children': [],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311B',
+#                 'Name': 'Bleeding with sex'
+#             },
+#             {
+#                 'Id': '29865431312B',
+#                 'Name': 'A cauliflower-like shape caused by a few warts close together'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313B',
+#                 'Name': 'Pap tests'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314B',
+#                 'Name': 'Imiquimod'
+#             },
+#             {
+#                 'Id': '29865431315B',
+#                 'Name': 'Trichloroacetic acid'
+#             }
+#         ]
+#     },
+#     'Heart block': {
+#         'Id': '2212112a',
+#         'Parent': [
+#             {
+#                 'Id': '212112410a',
+#                 'Name': 'Conduction disorder of the heart'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112411a',
+#                 'Name': 'Atrioventricular block'
+#             },
+#             {
+#                 'Id': '212112412a',
+#                 'Name': 'Heart block caused by drug'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431313a',
+#                 'Name': 'fainting (syncope)'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313',
+#                 'Name': 'Electrocardiogram (ECG or EKG)'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314',
+#                 'Name': 'medications to reduce high blood pressure or reduce symptoms of heart failure'
+#             }
+#         ]
+#     },
+#     'Pneumonia': {
+#         'Id': '2212112b',
+#         'Parent': [
+#             {
+#                 'Id': '212112410b',
+#                 'Name': 'Infectious disease of lung (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410b',
+#                 'Name': ' Abscess of lung with pneumonia (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311b',
+#                 'Name': 'Chest pain when you breathe or cough'
+#             },
+#             {
+#                 'Id': '29865431312b',
+#                 'Name': 'Fever, sweating and shaking chills'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313b',
+#                 'Name': 'Blood tests'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314b',
+#                 'Name': 'Antibiotics'
+#             },
+#             {
+#                 'Id': '29865431315b',
+#                 'Name': 'Cough medicine'
+#             }
+#         ]
+#     },
+#     'Bronchitis': {
+#         'Id': '2212112c',
+#         'Parent': [
+#             {
+#                 'Id': '212182410c',
+#                 'Name': 'Inflammation of specific body organs'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410c',
+#                 'Name': 'Acute bronchitis (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311c',
+#                 'Name': 'Sore throat'
+#             },
+#             {
+#                 'Id': '29865431312c',
+#                 'Name': 'Slight fever and chills'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313c',
+#                 'Name': 'Chest X-ray'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314c',
+#                 'Name': 'Cough medicine'
+#             },
+#             {
+#                 'Id': '29865431315c',
+#                 'Name': 'Antibiotics'
+#             }
+#         ]
+#     },
+#     'Tuberculosis': {
+#         'Id': '2212112d',
+#         'Parent': [
+#             {
+#                 'Id': '212112410d',
+#                 'Name': 'Disorder characterized by granuloma formation (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112411d',
+#                 'Name': 'Acute tuberculous ulcer (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311d',
+#                 'Name': 'Low fever'
+#             },
+#             {
+#                 'Id': '29865431312d',
+#                 'Name': 'Tiredness'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313d',
+#                 'Name': 'Listening to breathe with a stethoscope'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314d',
+#                 'Name': 'Isoniazid'
+#             },
+#             {
+#                 'Id': '29865431315d',
+#                 'Name': 'Rifampin'
+#             }
+#         ]
+#     },
+#     'Gastritis': {
+#         'Id': '2212112',
+#         'Parent': [
+#             {
+#                 'Id': '212112410e',
+#                 'Name': 'Disorder of stomach (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '2121124111e',
+#                 'Name': 'Acute gastritis (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311e',
+#                 'Name': 'Vomiting'
+#             },
+#             {
+#                 'Id': '29865431312e',
+#                 'Name': 'Nausea'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313e',
+#                 'Name': 'Tests for H. pylori'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314e',
+#                 'Name': 'Antibiotics to kill H. pylori'
+#             },
+#             {
+#                 'Id': '29865431315e',
+#                 'Name': 'Medicines that block acid production and promote healing'
+#             }
+#         ]
+#     },
+#     'Hepatitis A': {
+#         'Id': '2212112f',
+#         'Parent': [
+#             {
+#                 'Id': '212112410f',
+#                 'Name': 'Viral hepatitis (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410f',
+#                 'Name': 'Acute type A viral hepatitis (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311f',
+#                 'Name': 'Unusual tiredness and weakness'
+#             },
+#             {
+#                 'Id': '29865431312f',
+#                 'Name': 'Sudden nausea and vomiting and diarrhea'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313f',
+#                 'Name': 'Blood tests are used to look for signs of the hepatitis A virus'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314f',
+#                 'Name': 'Get adequate food and liquid'
+#             },
+#             {
+#                 'Id': '29865431315f',
+#                 'Name': 'Avoid alcohol and use medications with care'
+#             }
+#         ]
+#     },
+#     'Cataracts': {
+#         'Id': '2212112j',
+#         'Parent': [
+#             {
+#                 'Id': '212112410j',
+#                 'Name': 'Degenerative disorder of bilateral eyes (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410j',
+#                 'Name': 'Anterior subcapsular polar cataract of bilateral eyes (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311j',
+#                 'Name': 'Clouded, blurred or dim vision'
+#             },
+#             {
+#                 'Id': '29865431312j',
+#                 'Name': 'Need for brighter light for reading and other activities'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313j',
+#                 'Name': 'Vision test'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314j',
+#                 'Name': 'surgery'
+#             }
+#         ]
+#     },
+#     'Anaemia': {
+#         'Id': '2212112g',
+#         'Parent': [
+#             {
+#                 'Id': '212112410g',
+#                 'Name': 'Disorder of cellular component of blood (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410g',
+#                 'Name': 'Acquired Heinz body anemia (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311g',
+#                 'Name': 'Shortness of breath'
+#             },
+#             {
+#                 'Id': '29865431312g',
+#                 'Name': 'Irregular heartbeat'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313g',
+#                 'Name': 'Complete blood count, also called CBC'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314g',
+#                 'Name': 'Iron deficiency anemia'
+#             },
+#             {
+#                 'Id': '29865431315g',
+#                 'Name': 'Anemia of chronic disease'
+#             }
+#         ]
+#     },
+#     'Depression': {
+#         'Id': '2212112h',
+#         'Parent': [
+#             {
+#                 'Id': '212112410h',
+#                 'Name': 'Mood disorder (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410h',
+#                 'Name': 'Acute depression (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311h',
+#                 'Name': 'Feelings of sadness, tearfulness, emptiness or hopelessness'
+#             },
+#             {
+#                 'Id': '29865431312h',
+#                 'Name': 'Angry outbursts, irritability or frustration, even over small matters'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313h',
+#                 'Name': 'Blood tests are used to look for signs of the hepatitis A virus'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314h',
+#                 'Name': 'Anxious distress'
+#             },
+#             {
+#                 'Id': '29865431315h',
+#                 'Name': 'Melancholic features'
+#             }
+#         ]
+#     },
+#     'Glaucoma': {
+#         'Id': '2212112i',
+#         'Parent': [
+#             {
+#                 'Id': '212112410i',
+#                 'Name': 'Disorder of eye proper (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410i',
+#                 'Name': 'Absolute glaucoma (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311i',
+#                 'Name': 'In later stages, difficulty seeing things in your central vision'
+#             },
+#             {
+#                 'Id': '29865431312i',
+#                 'Name': 'Gradually, patchy blind spots in your side vision. Side vision also is called peripheral vision'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313i',
+#                 'Name': 'Measuring intraocular pressure, also called tonometry'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314i',
+#                 'Name': 'Get adequate food and liquid'
+#             },
+#             {
+#                 'Id': '29865431315i',
+#                 'Name': 'Checking for areas of vision loss, also known as a visual field test'
+#             }
+#         ]
+#     },
+#     'Gout': {
+#         'Id': '2212112k',
+#         'Parent': [
+#             {
+#                 'Id': '212112410k',
+#                 'Name': 'Inflammatory disorder (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410k',
+#                 'Name': 'Chronic gout without tophus (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311k',
+#                 'Name': 'Intense joint pain'
+#             },
+#             {
+#                 'Id': '29865431312k',
+#                 'Name': 'Irritation, swelling and redness'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313k',
+#                 'Name': 'Joint fluid test'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314k',
+#                 'Name': 'Medicine that helps lessen the swelling'
+#             },
+#             {
+#                 'Id': '29865431315k',
+#                 'Name': 'Medicine that prevent gout complications by lowering uric acid in the blood'
+#             }
+#         ]
+#     },
+#     'Acute sinusitis': {
+#         'Id': '2212112L',
+#         'Parent': [
+#             {
+#                 'Id': '212112410L',
+#                 'Name': 'Acute inflammatory disease (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410L',
+#                 'Name': 'Acute bacterial sinusitis (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311L',
+#                 'Name': 'Ear pressure'
+#             },
+#             {
+#                 'Id': '29865431312L',
+#                 'Name': 'Aching in the teeth'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313L',
+#                 'Name': 'Nasal endoscopy'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314L',
+#                 'Name': 'Saline nasal spray'
+#             },
+#             {
+#                 'Id': '29865431315L',
+#                 'Name': 'Nasal corticosteroids'
+#             }
+#         ]
+#     },
+#     'Gingivitis': {
+#         'Id': '2212112m',
+#         'Parent': [
+#             {
+#                 'Id': '212112410m',
+#                 'Name': 'Gingival disease (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410m',
+#                 'Name': 'Acute gingivitis (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311m',
+#                 'Name': 'Swollen or puffy gums'
+#             },
+#             {
+#                 'Id': '29865431312m',
+#                 'Name': 'Bad breath'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313m',
+#                 'Name': 'Measuring intraocular pressure, also called tonometry'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314m',
+#                 'Name': 'Review of your dental and medical history'
+#             },
+#             {
+#                 'Id': '29865431315m',
+#                 'Name': 'Looking at your teeth, gums, mouth and tongue'
+#             }
+#         ]
+#     },
+#     'Haemorrhoids': {
+#         'Id': '2212112n',
+#         'Parent': [
+#             {
+#                 'Id': '212112410n',
+#                 'Name': 'Disorder of anal canal (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410n',
+#                 'Name': 'Bleeding hemorrhoids (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311n',
+#                 'Name': 'Painless bleeding'
+#             },
+#             {
+#                 'Id': '29865431312n',
+#                 'Name': 'Itching or irritation in the anal area'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313n',
+#                 'Name': 'Digital exam'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314n',
+#                 'Name': 'Eat high-fiber foods'
+#             },
+#             {
+#                 'Id': '29865431315n',
+#                 'Name': 'Use topical treatments'
+#             }
+#         ]
+#     },
+#     'Constipation': {
+#         'Id': '2212112o',
+#         'Parent': [
+#             {
+#                 'Id': '212112410o',
+#                 'Name': 'Disorder of anal canal (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410o',
+#                 'Name': 'Bleeding hemorrhoids (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311o',
+#                 'Name': 'Fewer than three stools a week'
+#             },
+#             {
+#                 'Id': '29865431312o',
+#                 'Name': 'Hard, dry or lumpy stools'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313o',
+#                 'Name': 'Look at the tissue of the anus and the surrounding skin'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314o',
+#                 'Name': 'Eat a high-fiber diet'
+#             },
+#             {
+#                 'Id': '29865431315o',
+#                 'Name': 'Exercise most days of the week'
+#             }
+#         ]
+#     },
+#     'Diarrhea': {
+#         'Id': '2212112p',
+#         'Parent': [
+#             {
+#                 'Id': '212112410p',
+#                 'Name': 'Disorder of anal canal (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410p',
+#                 'Name': 'Bleeding hemorrhoids (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311p',
+#                 'Name': 'Belly cramps or pain'
+#             },
+#             {
+#                 'Id': '29865431312p',
+#                 'Name': 'Vomiting'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313p',
+#                 'Name': 'Flexible sigmoidoscopy or colonoscopy'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314p',
+#                 'Name': 'Antibiotics or anti-parasitics'
+#             }
+#         ]
+#     },
+#     'Gallstones': {
+#         'Id': '2212112q',
+#         'Parent': [
+#             {
+#                 'Id': '212112410q',
+#                 'Name': 'Calculus in biliary tract (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410q',
+#                 'Name': 'Calculus of gallbladder with cholecystitis (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311q',
+#                 'Name': 'Sudden and rapidly intensifying pain in the upper right portion of your abdomen'
+#             },
+#             {
+#                 'Id': '29865431312q',
+#                 'Name': 'Back pain between your shoulder blades'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313q',
+#                 'Name': 'Abdominal ultrasound'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314q',
+#                 'Name': 'Surgery to remove the gallbladder'
+#             },
+#             {
+#                 'Id': '29865431315q',
+#                 'Name': 'Medications to dissolve gallstones'
+#             }
+#         ]
+#     },
+#     'Endometriosis': {
+#         'Id': '2212112r',
+#         'Parent': [
+#             {
+#                 'Id': '212112410r',
+#                 'Name': 'Calculus in biliary tract (disorder)'
+#             }
+#         ],
+#         'Children': [
+#             {
+#                 'Id': '212112410r',
+#                 'Name': 'Calculus of gallbladder with cholecystitis (disorder)'
+#             }
+#         ],
+#         'Symptoms': [
+#             {
+#                 'Id': '29865431311r',
+#                 'Name': 'Painful periods'
+#             },
+#             {
+#                 'Id': '29865431312r',
+#                 'Name': 'Pain with sex'
+#             }
+#         ],
+#         'Diagnosis': [
+#             {
+#                 'Id': '29865431313r',
+#                 'Name': 'Pelvic exam'
+#             }
+#         ],
+#         'Treatment': [
+#             {
+#                 'Id': '29865431314r',
+#                 'Name': 'Pain medicines'
+#             },
+#             {
+#                 'Id': '29865431315r',
+#                 'Name': 'Hormone therapy'
+#             }
+#         ]
+#     }
+# }
+
 DomainOntology = {
     'Asthma': {
-        'Id': '11',
+        'Id': 'A1',
         'Parent': [
             {
-                'Id': '21215431316',
+                'Id': '21215431311A',
                 'Name': 'Disorder of respiratory system'
             }
         ],
         'Children': [
             {
-                'Id': '21256751316',
+                'Id': '21256751312A',
                 'Name': 'Asthma in pregnancy'
             },
             {
-                'Id': '29865431316',
+                'Id': '29865431313A',
                 'Name': 'Childhood asthma'
             }
         ],
         'Symptoms': [
             {
-                'Id': '29865431316a',
+                'Id': 'S1',
                 'Name': 'Shortness of breath'
             },
             {
-                'Id': '29865431316b',
+                'Id': 'S2',
                 'Name': 'Chest tightness'
             }
         ],
         'Diagnosis': [
             {
-                'Id': '29865431316c',
+                'Id': 'D1',
                 'Name': 'Methacholine challenge'
             },
             {
-                'Id': '29865431316d',
+                'Id': 'D2',
                 'Name': 'Imaging tests'
             }
         ],
         'Treatment': [
             {
-                'Id': '29865431316e',
+                'Id': 'T1',
                 'Name': 'Inhaled corticosteroids'
             },
             {
-                'Id': '29865431316f',
+                'Id': 'T2',
                 'Name': 'Leukotriene modifiers'
             }
         ]
     },
     'AnalWarts': {
-        'Id': '2212112',
+        'Id': 'A2',
         'Parent': [
             {
-                'Id': '212112456',
+                'Id': '212112410B',
                 'Name': 'Anal Infection'
             }
         ],
         'Children': [],
         'Symptoms': [
             {
-                'Id': '29865431316A',
+                'Id': 'S3',
                 'Name': 'Bleeding with sex'
             },
             {
-                'Id': '29865431316B',
+                'Id': 'S4',
                 'Name': 'A cauliflower-like shape caused by a few warts close together'
             }
         ],
         'Diagnosis': [
             {
-                'Id': '29865431316C',
+                'Id': 'D3',
                 'Name': 'Pap tests'
             }
         ],
         'Treatment': [
             {
-                'Id': '29865431316D',
+                'Id': 'T3',
                 'Name': 'Imiquimod'
             },
             {
-                'Id': '29865431316E',
+                'Id': 'T4',
                 'Name': 'Trichloroacetic acid'
+            }
+        ]
+    },
+    'Heart block': {
+        'Id': 'A3',
+        'Parent': [
+            {
+                'Id': '212112410a',
+                'Name': 'Conduction disorder of the heart'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112411a',
+                'Name': 'Atrioventricular block'
+            },
+            {
+                'Id': '212112412a',
+                'Name': 'Heart block caused by drug'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S5',
+                'Name': 'fainting (syncope)'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D4',
+                'Name': 'Electrocardiogram (ECG or EKG)'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T5',
+                'Name': 'medications to reduce high blood pressure or reduce symptoms of heart failure'
+            }
+        ]
+    },
+    'Pneumonia': {
+        'Id': 'A4',
+        'Parent': [
+            {
+                'Id': '212112410b',
+                'Name': 'Infectious disease of lung (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410b',
+                'Name': ' Abscess of lung with pneumonia (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S6',
+                'Name': 'Chest pain when you breathe or cough'
+            },
+            {
+                'Id': 'S7',
+                'Name': 'Fever, sweating and shaking chills'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D5',
+                'Name': 'Blood tests'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T6',
+                'Name': 'Antibiotics'
+            },
+            {
+                'Id': 'T7',
+                'Name': 'Cough medicine'
+            }
+        ]
+    },
+    'Bronchitis': {
+        'Id': 'A5',
+        'Parent': [
+            {
+                'Id': '212182410c',
+                'Name': 'Inflammation of specific body organs'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410c',
+                'Name': 'Acute bronchitis (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S8',
+                'Name': 'Sore throat'
+            },
+            {
+                'Id': 'S9',
+                'Name': 'Slight fever and chills'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D6',
+                'Name': 'Chest X-ray'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T8',
+                'Name': 'Cough medicine'
+            },
+            {
+                'Id': 'T9',
+                'Name': 'Antibiotics'
+            }
+        ]
+    },
+    'Tuberculosis': {
+        'Id': 'A6',
+        'Parent': [
+            {
+                'Id': '212112410d',
+                'Name': 'Disorder characterized by granuloma formation (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112411d',
+                'Name': 'Acute tuberculous ulcer (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S10',
+                'Name': 'Low fever'
+            },
+            {
+                'Id': 'S11',
+                'Name': 'Tiredness'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D7',
+                'Name': 'Listening to breathe with a stethoscope'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T10',
+                'Name': 'Isoniazid'
+            },
+            {
+                'Id': 'T11',
+                'Name': 'Rifampin'
+            }
+        ]
+    },
+    'Gastritis': {
+        'Id': 'A7',
+        'Parent': [
+            {
+                'Id': '212112410e',
+                'Name': 'Disorder of stomach (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '2121124111e',
+                'Name': 'Acute gastritis (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S12',
+                'Name': 'Vomiting'
+            },
+            {
+                'Id': 'S13',
+                'Name': 'Nausea'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D8',
+                'Name': 'Tests for H. pylori'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T12',
+                'Name': 'Antibiotics to kill H. pylori'
+            },
+            {
+                'Id': 'T13',
+                'Name': 'Medicines that block acid production and promote healing'
+            }
+        ]
+    },
+    'Hepatitis A': {
+        'Id': 'A8',
+        'Parent': [
+            {
+                'Id': '212112410f',
+                'Name': 'Viral hepatitis (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410f',
+                'Name': 'Acute type A viral hepatitis (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S14',
+                'Name': 'Unusual tiredness and weakness'
+            },
+            {
+                'Id': 'S39',
+                'Name': 'Sudden nausea and vomiting and diarrhea'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D9',
+                'Name': 'Blood tests are used to look for signs of the hepatitis A virus'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T14',
+                'Name': 'Get adequate food and liquid'
+            },
+            {
+                'Id': 'T15',
+                'Name': 'Avoid alcohol and use medications with care'
+            }
+        ]
+    },
+    'Cataracts': {
+        'Id': 'A9',
+        'Parent': [
+            {
+                'Id': '212112410j',
+                'Name': 'Degenerative disorder of bilateral eyes (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410j',
+                'Name': 'Anterior subcapsular polar cataract of bilateral eyes (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S15',
+                'Name': 'Clouded, blurred or dim vision'
+            },
+            {
+                'Id': 'S16',
+                'Name': 'Need for brighter light for reading and other activities'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D10',
+                'Name': 'Vision test'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T16',
+                'Name': 'surgery'
+            }
+        ]
+    },
+    'Anaemia': {
+        'Id': 'A10',
+        'Parent': [
+            {
+                'Id': '212112410g',
+                'Name': 'Disorder of cellular component of blood (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410g',
+                'Name': 'Acquired Heinz body anemia (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S17',
+                'Name': 'Shortness of breath'
+            },
+            {
+                'Id': 'S18',
+                'Name': 'Irregular heartbeat'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D11',
+                'Name': 'Complete blood count, also called CBC'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T17',
+                'Name': 'Iron deficiency anemia'
+            },
+            {
+                'Id': 'T18',
+                'Name': 'Anemia of chronic disease'
+            }
+        ]
+    },
+    'Depression': {
+        'Id': 'A11',
+        'Parent': [
+            {
+                'Id': '212112410h',
+                'Name': 'Mood disorder (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410h',
+                'Name': 'Acute depression (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S19',
+                'Name': 'Feelings of sadness, tearfulness, emptiness or hopelessness'
+            },
+            {
+                'Id': 'S20',
+                'Name': 'Angry outbursts, irritability or frustration, even over small matters'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D12',
+                'Name': 'Blood tests are used to look for signs of the hepatitis A virus'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T19',
+                'Name': 'Anxious distress'
+            },
+            {
+                'Id': 'T20',
+                'Name': 'Melancholic features'
+            }
+        ]
+    },
+    'Glaucoma': {
+        'Id': 'A12',
+        'Parent': [
+            {
+                'Id': '212112410i',
+                'Name': 'Disorder of eye proper (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410i',
+                'Name': 'Absolute glaucoma (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S21',
+                'Name': 'In later stages, difficulty seeing things in your central vision'
+            },
+            {
+                'Id': 'S22',
+                'Name': 'Gradually, patchy blind spots in your side vision. Side vision also is called peripheral vision'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D13',
+                'Name': 'Measuring intraocular pressure, also called tonometry'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T21',
+                'Name': 'Get adequate food and liquid'
+            },
+            {
+                'Id': 'T22',
+                'Name': 'Checking for areas of vision loss, also known as a visual field test'
+            }
+        ]
+    },
+    'Gout': {
+        'Id': 'A13',
+        'Parent': [
+            {
+                'Id': '212112410k',
+                'Name': 'Inflammatory disorder (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410k',
+                'Name': 'Chronic gout without tophus (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S23',
+                'Name': 'Intense joint pain'
+            },
+            {
+                'Id': 'S24',
+                'Name': 'Irritation, swelling and redness'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D14',
+                'Name': 'Joint fluid test'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T23',
+                'Name': 'Medicine that helps lessen the swelling'
+            },
+            {
+                'Id': 'T24',
+                'Name': 'Medicine that prevent gout complications by lowering uric acid in the blood'
+            }
+        ]
+    },
+    'Acute sinusitis': {
+        'Id': 'A14',
+        'Parent': [
+            {
+                'Id': '212112410L',
+                'Name': 'Acute inflammatory disease (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410L',
+                'Name': 'Acute bacterial sinusitis (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S25',
+                'Name': 'Ear pressure'
+            },
+            {
+                'Id': 'S26',
+                'Name': 'Aching in the teeth'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D15',
+                'Name': 'Nasal endoscopy'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T25',
+                'Name': 'Saline nasal spray'
+            },
+            {
+                'Id': 'T26',
+                'Name': 'Nasal corticosteroids'
+            }
+        ]
+    },
+    'Gingivitis': {
+        'Id': 'A15',
+        'Parent': [
+            {
+                'Id': '212112410m',
+                'Name': 'Gingival disease (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410m',
+                'Name': 'Acute gingivitis (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S27',
+                'Name': 'Swollen or puffy gums'
+            },
+            {
+                'Id': 'S28',
+                'Name': 'Bad breath'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D16',
+                'Name': 'Measuring intraocular pressure, also called tonometry'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T27',
+                'Name': 'Review of your dental and medical history'
+            },
+            {
+                'Id': 'T28',
+                'Name': 'Looking at your teeth, gums, mouth and tongue'
+            }
+        ]
+    },
+    'Haemorrhoids': {
+        'Id': 'A16',
+        'Parent': [
+            {
+                'Id': '212112410n',
+                'Name': 'Disorder of anal canal (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410n',
+                'Name': 'Bleeding hemorrhoids (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S29',
+                'Name': 'Painless bleeding'
+            },
+            {
+                'Id': 'S30',
+                'Name': 'Itching or irritation in the anal area'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D17',
+                'Name': 'Digital exam'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T29',
+                'Name': 'Eat high-fiber foods'
+            },
+            {
+                'Id': 'T30',
+                'Name': 'Use topical treatments'
+            }
+        ]
+    },
+    'Constipation': {
+        'Id': 'A17',
+        'Parent': [
+            {
+                'Id': '212112410o',
+                'Name': 'Disorder of anal canal (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410o',
+                'Name': 'Bleeding hemorrhoids (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S31',
+                'Name': 'Fewer than three stools a week'
+            },
+            {
+                'Id': 'S32',
+                'Name': 'Hard, dry or lumpy stools'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D18',
+                'Name': 'Look at the tissue of the anus and the surrounding skin'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T31',
+                'Name': 'Eat a high-fiber diet'
+            },
+            {
+                'Id': 'T32',
+                'Name': 'Exercise most days of the week'
+            }
+        ]
+    },
+    'Diarrhea': {
+        'Id': 'A18',
+        'Parent': [
+            {
+                'Id': '212112410p',
+                'Name': 'Disorder of anal canal (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410p',
+                'Name': 'Bleeding hemorrhoids (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S33',
+                'Name': 'Belly cramps or pain'
+            },
+            {
+                'Id': 'S34',
+                'Name': 'Vomiting'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D19',
+                'Name': 'Flexible sigmoidoscopy or colonoscopy'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T33',
+                'Name': 'Antibiotics or anti-parasitics'
+            }
+        ]
+    },
+    'Gallstones': {
+        'Id': 'A19',
+        'Parent': [
+            {
+                'Id': '212112410q',
+                'Name': 'Calculus in biliary tract (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410q',
+                'Name': 'Calculus of gallbladder with cholecystitis (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S35',
+                'Name': 'Sudden and rapidly intensifying pain in the upper right portion of your abdomen'
+            },
+            {
+                'Id': 'S36',
+                'Name': 'Back pain between your shoulder blades'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D20',
+                'Name': 'Abdominal ultrasound'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T34',
+                'Name': 'Surgery to remove the gallbladder'
+            },
+            {
+                'Id': 'T35',
+                'Name': 'Medications to dissolve gallstones'
+            }
+        ]
+    },
+    'Endometriosis': {
+        'Id': 'A20',
+        'Parent': [
+            {
+                'Id': '212112410r',
+                'Name': 'Calculus in biliary tract (disorder)'
+            }
+        ],
+        'Children': [
+            {
+                'Id': '212112410r',
+                'Name': 'Calculus of gallbladder with cholecystitis (disorder)'
+            }
+        ],
+        'Symptoms': [
+            {
+                'Id': 'S37',
+                'Name': 'Painful periods'
+            },
+            {
+                'Id': 'S38',
+                'Name': 'Pain with sex'
+            }
+        ],
+        'Diagnosis': [
+            {
+                'Id': 'D21',
+                'Name': 'Pelvic exam'
+            }
+        ],
+        'Treatment': [
+            {
+                'Id': 'T36',
+                'Name': 'Pain medicines'
+            },
+            {
+                'Id': 'T37',
+                'Name': 'Hormone therapy'
             }
         ]
     }
@@ -108,14 +1648,11 @@ def consumptionContextGenerator(db):
     ##-----------------------------------context--------------------------------------##
     timeStamp = time.time()
     context = {
-        'location' : 'Unknown',
         'timeStamp' : timeStamp
     }
-
-
     ##----------------------------------agent ascertain---------------------------------##
     agentPublicKeys = {}
-    for i in range(1, 5):
+    for i in range(1, 4):
         with open("../asymKeys/public_{0}.pem".format(i), 'rb') as f:  ##obtain the saved public key
             publicKey = serialization.load_pem_public_key(f.read())
             agentPublicKeys['agent{0}'.format(i)] = publicKey
@@ -123,13 +1660,9 @@ def consumptionContextGenerator(db):
 
     ##-----------------------------------query-------------------------------------##
     ##query comes in here
-    query = 'We would like to obtain the dialogue between Doctor Smith and his Patient Mark about his symptoms.'
-
-
-
-    ##-----------------------------------leash ticket---------------------------------------##
-    # leashTicketId = '6a421f3e77defcef82430ecf'   ##get the leash ticket
-    # leashTicket = db['data'].find_one({"_id": ObjectId(leashTicketId)})
+    query = ('We would like to obtain the dialogue between Doctor and his Patient. '
+             'The patient believes that he has shortness of breath and chest tightness. '
+             'Doctor believes that it is asthma and suggests that the patient should have treatment: Inhaled corticosteroids')
 
     csc['context'] = context
     # csc['leashTicket'] = leashTicket
@@ -162,7 +1695,7 @@ if __name__ == '__main__':
     keywords = kbModel.extract_keywords(
         csc['query'],
         stop_words='english',
-        use_mmr=True  ## exclude those similar words, such as apple and apples
+        use_mmr=True  ## exclude those similar words
     )
     print('keywords: ', keywords)
     keywordsNum = len(keywords)
@@ -172,7 +1705,7 @@ if __name__ == '__main__':
     for i in range(len(keywords)):
         sentences.append(keywords[i][0])
 
-    ontologies = ['Asthma', 'AnalWarts']
+    ontologies = ['Asthma']
     for i in ontologies:
         nodesNum  = 0
         sen = copy.deepcopy(sentences)
@@ -186,7 +1719,7 @@ if __name__ == '__main__':
         print('those are the sentences:', sen, '\n')
         embedding = model.encode(sen)
         relevanceResult = model.similarity(embedding, embedding)
-        print('let us look at the relevance result: ', relevanceResult, '\n')
+        print('The relevance result: ', relevanceResult, '\n')
 
 
         ##---------------------------------locating the ontology with the highest relevance-------------------------------------------##
@@ -241,12 +1774,16 @@ if __name__ == '__main__':
 
     ##------------------------------------obtain candidates-----------------------------------##
     candidates = []
+    candidatesPosi = []
+    index = 1
     for i in ontologyPointers:
         for item in collection.find():
             if 'Wrapper' in item:
                 for j in item['Wrapper']['Ontology Pointers']:
-                    if (j == i) and (item['_id'] not in candidates):
+                    if (list(j.keys())[0] == list(i.keys())[0]) and (list(j.values())[0] == list(i.values())[0]) and (item['_id'] not in candidates):
                         candidates.append(item['_id'])
+                        candidatesPosi.append(index)
+                index += 1
 
     print('Those are the candidates: ', candidates)
 
@@ -311,11 +1848,10 @@ if __name__ == '__main__':
             if BM[j, i] == 0:
                 isAccepted = False
         if isAccepted:
-            acceptedAtoms.append(i)  ##BM's column represents all the candidates.
+            acceptedAtoms.append(candidates[i])  ##BM's column represents all the candidates.
 
     print('Those are accepted atoms: ', acceptedAtoms)
-
-
+    print('Those are their positions in MongoDB: ', candidatesPosi)
 
 
 
